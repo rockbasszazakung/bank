@@ -49,7 +49,9 @@ class Transaction {
             // $stmt->closeCursor();
  
             // ---> to do here ตรวจสอบว่ามีเงินที่จะโอนมีน้อยกว่าในบัญชีหรือไม่
-
+            if($availableAmount < $amount){
+                return "จำนวนเงินคุณไม่เพียงพอ";
+                }
             // deduct from the transferred account
             $sql_update_from = 'UPDATE accounts
                 SET amount = amount - :amount
@@ -73,7 +75,7 @@ class Transaction {
             $stmt->closeCursor();
  
             // ---> to do here ***************
- 
+            
             // commit the transaction
             $this->pdo->commit();
  
